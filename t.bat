@@ -1,0 +1,1 @@
+call pio test -e target_test -f "test_wifi_target"

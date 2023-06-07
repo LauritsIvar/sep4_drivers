@@ -1,0 +1,3 @@
+echo !!!!
+pio test -e win_test_wifi -f "test_wifi_win"   
+:: This is a remark... 
