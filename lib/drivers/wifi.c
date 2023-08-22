@@ -139,6 +139,7 @@ WIFI_ERROR_MESSAGE_t wifi_command_set_to_single_Connection()
 #define IPD_PREFIX "+IPD,"
 #define PREFIX_LENGTH 5
 
+
 WIFI_TCP_Callback_t callback_when_message_received_static;
 char *received_message_buffer_static_pointer;
 void static wifi_TCP_callback(uint8_t byte)
