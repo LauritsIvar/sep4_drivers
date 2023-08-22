@@ -1,12 +1,15 @@
 #pragma once
 #include <stdint.h>
 
+
 typedef enum {
     USART_0,
     USART_1,
     USART_2,
     USART_3
 } USART_t;
+
+
 
 
 typedef void (*UART_Callback_t)(uint8_t);
