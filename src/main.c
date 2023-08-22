@@ -11,8 +11,12 @@ void receive(){
 }
 
 int main(){
+//Lets add a newline here!
 
-  led_hal_init();
+
+
+
+//  led_hal_init();
   uart_init(USART_0, 115200, NULL);
   wifi_init();
   wifi_command_disable_echo();

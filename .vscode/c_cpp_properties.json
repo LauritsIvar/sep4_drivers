@@ -8,13 +8,12 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/include",
-                "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/src",
-                "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/lib/drivers",
-                "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/lib/mocks",
+                "c:/Users/Laurits/Documents/GitHub/sep4_drivers/include",
+                "c:/Users/Laurits/Documents/GitHub/sep4_drivers/src",
+                "c:/Users/Laurits/Documents/GitHub/sep4_drivers/lib/drivers",
+                "c:/Users/Laurits/Documents/GitHub/sep4_drivers/lib/mocks",
                 "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/variants/mega",
-                "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/.pio/libdeps/target_run/Unity/src",
                 "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                 "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                 "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
@@ -25,13 +24,12 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/include",
-                    "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/src",
-                    "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/lib/drivers",
-                    "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/lib/mocks",
+                    "c:/Users/Laurits/Documents/GitHub/sep4_drivers/include",
+                    "c:/Users/Laurits/Documents/GitHub/sep4_drivers/src",
+                    "c:/Users/Laurits/Documents/GitHub/sep4_drivers/lib/drivers",
+                    "c:/Users/Laurits/Documents/GitHub/sep4_drivers/lib/mocks",
                     "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/variants/mega",
-                    "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/.pio/libdeps/target_run/Unity/src",
                     "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                     "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                     "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
@@ -41,7 +39,7 @@
                 ]
             },
             "defines": [
-                "PLATFORMIO=60107",
+                "PLATFORMIO=60110",
                 "ARDUINO_AVR_MEGA2560",
                 "F_CPU=16000000L",
                 "ARDUINO_ARCH_AVR",
@@ -49,8 +47,8 @@
                 "__AVR_ATmega2560__",
                 ""
             ],
-            "cStandard": "c11",
-            "cppStandard": "c++11",
+            "cStandard": "gnu11",
+            "cppStandard": "gnu++11",
             "compilerPath": "C:/Users/Laurits/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe",
             "compilerArgs": [
                 "-mmcu=atmega2560",
