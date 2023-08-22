@@ -24,7 +24,7 @@ int main(){
 uint16_t i;
   while (1)
   {
-    
+     
 i++;
 wifi_command_TCP_transmit(&i,2);
 _delay_ms(1000);

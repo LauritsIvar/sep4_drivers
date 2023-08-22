@@ -8,52 +8,32 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/include",
-                "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/src",
-                "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/lib/drivers",
-                "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/lib/mocks",
-                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/cores/arduino",
-                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/variants/mega",
-                "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/.pio/libdeps/target_run/Unity/src",
-                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
-                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/HID/src",
-                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
-                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                "c:/Users/laua/OneDrive - ViaUC/Dokumenter/GitHub/sep4_drivers/include",
+                "c:/Users/laua/OneDrive - ViaUC/Dokumenter/GitHub/sep4_drivers/src",
+                "c:/Users/laua/OneDrive - ViaUC/Dokumenter/GitHub/sep4_drivers/lib/drivers",
+                "c:/Users/laua/OneDrive - ViaUC/Dokumenter/GitHub/sep4_drivers/lib/mocks",
+                "c:/Users/laua/OneDrive - ViaUC/Dokumenter/GitHub/sep4_drivers/.pio/libdeps/win_test_wifi/Unity/src",
                 ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/include",
-                    "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/src",
-                    "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/lib/drivers",
-                    "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/lib/mocks",
-                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/cores/arduino",
-                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/variants/mega",
-                    "c:/Users/Laurits/Documents/PlatformIO/Projects/TDD_driver/.pio/libdeps/target_run/Unity/src",
-                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
-                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/HID/src",
-                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
-                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    "c:/Users/laua/OneDrive - ViaUC/Dokumenter/GitHub/sep4_drivers/include",
+                    "c:/Users/laua/OneDrive - ViaUC/Dokumenter/GitHub/sep4_drivers/src",
+                    "c:/Users/laua/OneDrive - ViaUC/Dokumenter/GitHub/sep4_drivers/lib/drivers",
+                    "c:/Users/laua/OneDrive - ViaUC/Dokumenter/GitHub/sep4_drivers/lib/mocks",
+                    "c:/Users/laua/OneDrive - ViaUC/Dokumenter/GitHub/sep4_drivers/.pio/libdeps/win_test_wifi/Unity/src",
                     ""
                 ]
             },
             "defines": [
-                "PLATFORMIO=60107",
-                "ARDUINO_AVR_MEGA2560",
-                "F_CPU=16000000L",
-                "ARDUINO_ARCH_AVR",
-                "ARDUINO=10808",
-                "__AVR_ATmega2560__",
+                "PLATFORMIO=60110",
+                "WINDOWS_TEST",
+                "EXCLUDE_UART",
                 ""
             ],
-            "cStandard": "c11",
-            "cppStandard": "c++11",
-            "compilerPath": "C:/Users/Laurits/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe",
+            "compilerPath": "C:/MinGW/bin/gcc.exe",
             "compilerArgs": [
-                "-mmcu=atmega2560",
                 ""
             ]
         }
