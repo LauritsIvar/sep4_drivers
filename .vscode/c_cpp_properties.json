@@ -12,7 +12,13 @@
                 "c:/Users/Laurits/Documents/GitHub/sep4_drivers/src",
                 "c:/Users/Laurits/Documents/GitHub/sep4_drivers/lib/drivers",
                 "c:/Users/Laurits/Documents/GitHub/sep4_drivers/lib/mocks",
-                "c:/Users/Laurits/Documents/GitHub/sep4_drivers/.pio/libdeps/win_test_wifi/Unity/src",
+                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/variants/mega",
+                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                 ""
             ],
             "browse": {
@@ -22,18 +28,30 @@
                     "c:/Users/Laurits/Documents/GitHub/sep4_drivers/src",
                     "c:/Users/Laurits/Documents/GitHub/sep4_drivers/lib/drivers",
                     "c:/Users/Laurits/Documents/GitHub/sep4_drivers/lib/mocks",
-                    "c:/Users/Laurits/Documents/GitHub/sep4_drivers/.pio/libdeps/win_test_wifi/Unity/src",
+                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/variants/mega",
+                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                     ""
                 ]
             },
             "defines": [
                 "PLATFORMIO=60110",
-                "WINDOWS_TEST",
-                "EXCLUDE_UART",
+                "ARDUINO_AVR_MEGA2560",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO=10808",
+                "__AVR_ATmega2560__",
                 ""
             ],
-            "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
+            "cStandard": "gnu11",
+            "cppStandard": "gnu++11",
+            "compilerPath": "C:/Users/Laurits/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe",
             "compilerArgs": [
+                "-mmcu=atmega2560",
                 ""
             ]
         }
