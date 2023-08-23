@@ -12,31 +12,31 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-            "executable": "c:/Users/Laurits/Documents/GitHub/sep4_drivers/.pio/build/target_run/firmware.elf",
-            "projectEnvName": "target_run",
-            "toolchainBinDir": "C:/Users/Laurits/.platformio/packages/toolchain-atmelavr/bin",
+            "executable": "c:/Users/Laurits/Documents/GitHub/sep4_drivers/.pio/build/win_test_wifi/program.exe",
+            "projectEnvName": "win_test_wifi",
+            "toolchainBinDir": "",
             "internalConsoleOptions": "openOnSessionStart",
             "preLaunchTask": {
                 "type": "PlatformIO",
-                "task": "Pre-Debug"
+                "task": "Pre-Debug (win_test_wifi)"
             }
         },
         {
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
-            "executable": "c:/Users/Laurits/Documents/GitHub/sep4_drivers/.pio/build/target_run/firmware.elf",
-            "projectEnvName": "target_run",
-            "toolchainBinDir": "C:/Users/Laurits/.platformio/packages/toolchain-atmelavr/bin",
+            "executable": "c:/Users/Laurits/Documents/GitHub/sep4_drivers/.pio/build/win_test_wifi/program.exe",
+            "projectEnvName": "win_test_wifi",
+            "toolchainBinDir": "",
             "internalConsoleOptions": "openOnSessionStart"
         },
         {
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (without uploading)",
-            "executable": "c:/Users/Laurits/Documents/GitHub/sep4_drivers/.pio/build/target_run/firmware.elf",
-            "projectEnvName": "target_run",
-            "toolchainBinDir": "C:/Users/Laurits/.platformio/packages/toolchain-atmelavr/bin",
+            "executable": "c:/Users/Laurits/Documents/GitHub/sep4_drivers/.pio/build/win_test_wifi/program.exe",
+            "projectEnvName": "win_test_wifi",
+            "toolchainBinDir": "",
             "internalConsoleOptions": "openOnSessionStart",
             "loadMode": "manual"
         }
