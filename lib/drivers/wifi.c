@@ -26,21 +26,19 @@ static uint8_t wifi_dataBufferIndex;
 static uint32_t wifi_baudrate;
 
 
-WIFI_ERROR_MESSAGE_t wifi_init_and_varify()
-{
-    return WIFI_OK;
-}
+
 
 void wifi_init()
 {
     wifi_baudrate = 115200;
-    uart_init(USART_3, wifi_baudrate, NULL);
+    uart_init(USART_WIFI, wifi_baudrate, NULL);
 }
 
+/*
 void wifi_transmit(uint8_t *data, uint8_t length)
 {
-    uart_send_array_blocking(USART_3, data, length);
-}
+    uart_send_array_blocking(USART_WIFI, data, length);
+}*/
 
 void static wifi_clear_databuffer_and_index()
 {
@@ -56,14 +54,13 @@ void static wifi_command_callback(uint8_t received_byte)
 }
 WIFI_ERROR_MESSAGE_t wifi_command(const char *str, uint16_t timeOut_s)
 {
-    UART_Callback_t callback_state = uart_get_rx_callback(USART_3);
-    uart_init(USART_3, wifi_baudrate, wifi_command_callback);
-    //wifi_clear_databuffer_and_index();
+    UART_Callback_t callback_state = uart_get_rx_callback(USART_WIFI);
+    uart_init(USART_WIFI, wifi_baudrate, wifi_command_callback);
 
     char sendbuffer[128];
     strcpy(sendbuffer, str);
 
-    uart_send_string_blocking(USART_3, strcat(sendbuffer, "\r\n"));
+    uart_send_string_blocking(USART_WIFI, strcat(sendbuffer, "\r\n"));
 
     // better wait sequence...
     for (uint16_t i = 0; i < timeOut_s * 100UL; i++) // timeout after 20 sec
@@ -87,7 +84,7 @@ WIFI_ERROR_MESSAGE_t wifi_command(const char *str, uint16_t timeOut_s)
         error= WIFI_ERROR_RECEIVING_GARBAGE;
     
     wifi_clear_databuffer_and_index();
-    uart_init(USART_3, wifi_baudrate, callback_state);
+    uart_init(USART_WIFI, wifi_baudrate, callback_state);
     return error; 
 
 
@@ -220,7 +217,7 @@ WIFI_ERROR_MESSAGE_t wifi_command_create_TCP_connection(char *IP, uint16_t port,
     if (errorMessage != WIFI_OK)
         return errorMessage;
     else
-        uart_init(USART_3, wifi_baudrate, wifi_TCP_callback);
+        uart_init(USART_WIFI, wifi_baudrate, wifi_TCP_callback);
 
     wifi_clear_databuffer_and_index();
     return errorMessage;
@@ -237,7 +234,7 @@ WIFI_ERROR_MESSAGE_t wifi_command_TCP_transmit(uint8_t * data, uint16_t length){
     if (errorMessage != WIFI_OK)
         return errorMessage;
     
-uart_send_array_blocking(USART_3, data,  length);
+uart_send_array_blocking(USART_WIFI, data,  length);
 return WIFI_OK;
 }
 
