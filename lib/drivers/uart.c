@@ -292,6 +292,7 @@ static volatile uint8_t usart3_transmission_in_progress = 0;
 void uart_send_array_nonBlocking(USART_t usart, uint8_t *str, uint16_t len)
 {
 
+
     while (usart0_transmission_in_progress)
     {
     }
