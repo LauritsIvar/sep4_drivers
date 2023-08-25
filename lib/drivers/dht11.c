@@ -1,4 +1,4 @@
-#include "humidity.h"
+#include "dht11.h"
 #include "includes.h"
 
 #define DATA_BIT PD1
@@ -8,31 +8,30 @@
 
 
 
-static void humidity_init() {
+static void dht11_init() {
 
-    //Gnd
-    DDRD |= (1<<PD0);
-    PORTD &= ~(1<<PD0);
+//Vcc
+DDRD|=(1<<PD2);
+PORTD|=(1<<PD2);
 
-    //Vcc
-    DDRD |= (1<<PD2);
-    PORTD |= (1<<PD2);
+//GND
+DDRD|=(1<<PD0);
+PORTD&=~(1<<PD0);
+   // DATA_DDR |= (1 << DATA_BIT);
+    //DATA_PORT |= (1 << DATA_BIT);
 
-
-    DATA_DDR |= (1 << DATA_BIT);
-    DATA_PORT |= (1 << DATA_BIT);
-    _delay_ms(1000);
 }
 #define MAX_TIMINGS	85
 
-uint8_t data[5] = { 0, 0, 0, 0, 0 };
 
-HUMIDITY_ERROR_MESSAGE_t humidity_get(uint8_t* humidity_integer, uint8_t*  humidity_decimal, uint8_t* temperature_integer, uint8_t* temperature_decimal)
+
+DHT11_ERROR_MESSAGE_t dht11_get(uint8_t* humidity_integer, uint8_t*  humidity_decimal, uint8_t* temperature_integer, uint8_t* temperature_decimal)
 {
-    humidity_init();
+    dht11_init();
 	uint8_t laststate	= 1;
 	uint8_t counter		= 0;
 	uint8_t j			= 0, i;
+    uint8_t data[5] ;
 	data[0] = data[1] = data[2] = data[3] = data[4] = 0;
 	/* pull pin down for 18 milliseconds */
 	
@@ -68,7 +67,7 @@ HUMIDITY_ERROR_MESSAGE_t humidity_get(uint8_t* humidity_integer, uint8_t*  humid
 		{
 			/* shove each bit into the storage bytes */
 			data[j / 8] <<= 1;
-			if ( counter > 50 )
+			if ( counter > 26 )
 				data[j / 8] |= 1;
 			j++;
 		}
@@ -88,8 +87,9 @@ HUMIDITY_ERROR_MESSAGE_t humidity_get(uint8_t* humidity_integer, uint8_t*  humid
             *temperature_integer = data[2];
         if (temperature_decimal!=NULL)
             *temperature_decimal = data[3];
-        return HUMIDITY_OK;
+        return DHT11_OK;
 	}else  {
-        return HUMIDITY_FAIL;
+        *humidity_integer=*humidity_decimal=*temperature_integer=*temperature_decimal =0;
+        return DHT11_FAIL;
 	}
 }

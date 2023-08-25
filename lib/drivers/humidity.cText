@@ -1,95 +1,92 @@
-#include "humidity.h"
-#include "includes.h"
+//This works from main!!
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <avr/io.h>
+#include <util/delay.h>
+#include "pc_comm.h"
 
-#define DATA_BIT PD1
-#define DATA_PIN PIND
-#define DATA_DDR DDRD
-#define DATA_PORT PORTD
+#define MAX_TIME 85
+#define DHT11PIN PD2
+#define DHT11PORT PORTD
+#define DHT11PINREG PIND
+#define DHT11DDR DDRD
 
+int dht11_val[5] = {0, 0, 0, 0, 0};
 
-
-static void humidity_init() {
-
-    //Gnd
-    DDRD |= (1<<PD0);
-    PORTD &= ~(1<<PD0);
-
-    //Vcc
-    DDRD |= (1<<PD2);
-    PORTD |= (1<<PD2);
-
-
-    DATA_DDR |= (1 << DATA_BIT);
-    DATA_PORT |= (1 << DATA_BIT);
-    _delay_ms(1000);
-}
-#define MAX_TIMINGS	85
-
-uint8_t data[5] = { 0, 0, 0, 0, 0 };
-
-HUMIDITY_ERROR_MESSAGE_t humidity_get(uint8_t* humidity_integer, uint8_t*  humidity_decimal, uint8_t* temperature_integer, uint8_t* temperature_decimal)
+void dht11_read_val()
 {
-    humidity_init();
-	uint8_t laststate	= 1;
-	uint8_t counter		= 0;
-	uint8_t j			= 0, i;
-	data[0] = data[1] = data[2] = data[3] = data[4] = 0;
-	/* pull pin down for 18 milliseconds */
-	
-    DATA_DDR |= (1 << DATA_BIT);
-    DATA_PORT &= ~(1<<DATA_BIT);
-    _delay_ms(18);
+  char str[128];
+    uint8_t lststate = 1;   // Last state of the DHT11 pin, initialized to 1 (high)
+    uint8_t counter = 0;    // Counter variable to count pulse width
+    uint8_t j = 0, i;       // Loop variables
+    // float farenheit;      // Uncomment if you wish to use Fahrenheit
 
-    DATA_PORT |= (1<<DATA_BIT);
-    _delay_us(40);
+    // Initialize the array to zeros before reading new values
+    for (i = 0; i < 5; i++)
+        dht11_val[i] = 0;
 
-	/* prepare to read the pin */
-    DATA_DDR &= ~(1<<DATA_BIT);
-    DATA_PORT |= (1<<DATA_BIT); // Do I have to pullup?
+    // Initialize DHT11 communication
+    DHT11DDR |= (1 << DHT11PIN);    // Set DHT11PIN as output
+    DHT11PORT &= ~(1 << DHT11PIN);  // Pull DHT11PIN low
+    _delay_ms(18);                  // Wait 18 ms
+    DHT11PORT |= (1 << DHT11PIN);   // Pull DHT11PIN high
+    _delay_us(40);                  // Wait 40 us
 
-	/* detect change and read data */
-	for ( i = 0; i < MAX_TIMINGS; i++ )
-	{
-		counter = 0;
-		while ( (DATA_PIN&(1<<DATA_BIT)) == laststate )
-		{
-			counter++;
-			_delay_us( 1 );
-			if ( counter == 255 )
-			{
-				break;
-			}
-		}
-		laststate = (DATA_PIN&(1<<DATA_BIT));
-		if ( counter == 255 )
-			break;
-		/* ignore first 3 transitions */
-		if ( (i >= 4) && (i % 2 == 0) )
-		{
-			/* shove each bit into the storage bytes */
-			data[j / 8] <<= 1;
-			if ( counter > 50 )
-				data[j / 8] |= 1;
-			j++;
-		}
-	}
-	/*
-	 * check we read 40 bits (8bit x 5 ) + verify checksum in the last byte
-	 * print it out if data is good
-	 */
-	if ( (j >= 40) &&
-	     (data[4] == ( (data[0] + data[1] + data[2] + data[3]) & 0xFF) ) )
-	{
-		if (humidity_integer!=NULL)
-            *humidity_integer=data[0];
-		if (humidity_decimal!=NULL)
-            *humidity_decimal=data[1];
-        if (temperature_integer!=NULL)
-            *temperature_integer = data[2];
-        if (temperature_decimal!=NULL)
-            *temperature_decimal = data[3];
-        return HUMIDITY_OK;
-	}else  {
-        return HUMIDITY_FAIL;
-	}
+    // Switch to input to read from the DHT11 sensor
+    DHT11DDR &= ~(1 << DHT11PIN);
+
+    // Loop to read DHT11 data
+    for (i = 0; i < MAX_TIME; i++)
+    {
+        counter = 0;
+        // Measure the length of each pulse
+        while ((DHT11PINREG & (1 << DHT11PIN)) == lststate)
+        {
+            counter++;
+            _delay_us(1);
+            // Break if counter reaches 255 (overflow)
+            if (counter == 255)
+                break;
+        }
+
+        lststate = DHT11PINREG & (1 << DHT11PIN); // Update last state
+
+        // If the counter reached 255, break from the loop
+        if (counter == 255)
+            break;
+
+        // Parse actual data from the sensor, skip initial 3 transitions
+        if ((i >= 4) && (i % 2 == 0))
+        {
+            // Shift data and insert a bit into the least significant bit
+            dht11_val[j / 8] <<= 1;
+            // If the pulse is longer than 16us, it is a '1'
+            if (counter > 26)
+                dht11_val[j / 8] |= 1;
+            j++;
+        }
+    }
+
+    //if ((j >= 40) && (dht11_val[4] == ((dht11_val[0] + dht11_val[1] + dht11_val[2] + dht11_val[3]) & 0xFF)))
+    //{
+        // Uncomment if you wish to use Fahrenheit
+        // farenheit = dht11_val[2] * 9.0 / 5.0 + 32;
+        sprintf(str,"Humidity = %d.%d %% Temperature = %d.%d C\n", dht11_val[0], dht11_val[1], dht11_val[2], dht11_val[3]); //, farenheit);
+    //}
+    //else
+        //sprintf(str,"Invalid Data!!\n");
+
+        pc_comm_send_string_blocking(str);
+}
+
+int main(void)
+{
+  pc_comm_init(9600, NULL);
+    while (1)
+    {
+        dht11_read_val();
+        _delay_ms(3000);
+    }
+    return 0;
 }
