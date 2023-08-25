@@ -1,4 +1,3 @@
-#include <avr/io.h>
 #include <stdint.h>
 
 void leds_init(void);// initialize the LED’s to be output. 

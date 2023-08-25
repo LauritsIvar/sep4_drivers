@@ -1,12 +1,7 @@
-#ifdef WINDOWS_TEST
-#include "mock_avr_io.h"
-#else
-#include <avr/io.h>
-#include <util/delay.h>
-#endif
+#include "includes.h"
 
 
-#include <stdint.h>
+
 void buzzer_beep(){
 
     //Save the state of the 2 registers

@@ -1,8 +1,4 @@
-#ifdef WINDOWS_TEST
-    #include "mock_avr_io.h"
-#else
-    #include <avr/io.h>
-#endif
+#include "includes.h"
 void led_hal_init(void){
     DDRB |= (1<<PB7);
 }

@@ -8,13 +8,7 @@
 #include "led_hal.h"
 #include <string.h>
 
-#ifdef WINDOWS_TEST
-#include "mock_avr_io.h"
-#else
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include <util/delay.h>
-#endif
+#include "includes.h"
 
 static UART_Callback_t usart0_rx_callback = NULL;
 static UART_Callback_t usart1_rx_callback = NULL;

@@ -9,6 +9,7 @@
  * 
  */
 #include "uart.h"
+#include "stddef.h"
 
 /**
  * @brief Define which USART module is used for PC communication.

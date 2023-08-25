@@ -1,13 +1,6 @@
-#ifdef WINDOWS_TEST
-#include "mock_avr_io.h"
-#else
-#include <avr/io.h>
+#include "buttons.h"
+#include "includes.h"
 
-#include <util/delay.h>
-#endif
-
-
-#include <stdint.h>
 
 void buttons_init(){
     DDRF&=~((1<<PF1) | (1<<PF2) | (1<<PF3)) ; // Make them 3 buttons to be input. 

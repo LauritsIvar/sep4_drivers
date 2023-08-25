@@ -1,6 +1,6 @@
 #include "pc_comm.h"
+#include "includes.h"
 
-#include <stddef.h>
 
 void pc_comm_init(uint32_t baudrate, pc_comm_callback_t char_received_callback){
     uart_init(USART_PC_COMM, baudrate, (UART_Callback_t)char_received_callback);

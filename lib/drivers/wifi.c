@@ -1,21 +1,11 @@
-#ifndef EXCLUDE_WIFI
-
-#ifdef WINDOWS_TEST
-#include "mock_avr_io.h"
-#else
-#include <util/delay.h>
-#endif
+#include "wifi.h"
+#include "includes.h"
 
 // Production
 #include "wifi.h"
 #include "uart.h"
-
-#include <stddef.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdint.h>
 #include "led_hal.h"
-#include <string.h>
+
 
 
 
@@ -237,8 +227,3 @@ WIFI_ERROR_MESSAGE_t wifi_command_TCP_transmit(uint8_t * data, uint16_t length){
 uart_send_array_blocking(USART_WIFI, data,  length);
 return WIFI_OK;
 }
-
-
-
-
-#endif // EXCLUDE_WIFI

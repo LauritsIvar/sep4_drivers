@@ -43,6 +43,7 @@ uint8_t UCSR2C;
 
 #define UCSZ30 1
 #define UCSZ31 2
+#define PD1 1
 
 uint8_t UCSR3C;
 
@@ -100,6 +101,7 @@ uint8_t PORTG;
 
 uint8_t DDRD;
 uint8_t PORTD;
+uint8_t PIND;
 uint8_t PINC;
 
 uint8_t DDRF;
@@ -109,6 +111,9 @@ uint8_t PINF;
 #define PF1 1
 #define PF2 2
 #define PF3 3
+#define PD0 0
+#define PD1 1
+#define PD2 2
 
 uint8_t DDRE;
 uint8_t PORTE;

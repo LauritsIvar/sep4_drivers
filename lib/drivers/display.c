@@ -1,16 +1,6 @@
-#ifdef WINDOWS_TEST
-#include "mock_avr_io.h"
-#else
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include <util/delay.h>
-#endif
-
-
-
-
-#include <stdio.h>
 #include "display.h"
+#include "includes.h"
+
 
 #define LATCH_PIN PG5
 #define DATA_PIN PH5  // Serial Data Input.

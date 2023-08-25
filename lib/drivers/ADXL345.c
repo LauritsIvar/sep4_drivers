@@ -1,14 +1,6 @@
-#ifdef WINDOWS_TEST
-#include "mock_avr_io.h"
-#else
-#include <avr/io.h>
-
-#include <util/delay.h>
-#endif
-
-
-#include <inttypes.h>
 #include "ADXL345.h"
+#include "includes.h"
+
 // ADXL345 Register Addresses
 #define ADXL345_DEVID 0x00
 #define ADXL345_POWER_CTL 0x2D
