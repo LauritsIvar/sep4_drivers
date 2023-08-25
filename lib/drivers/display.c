@@ -1,6 +1,14 @@
+#ifdef WINDOWS_TEST
+#include "mock_avr_io.h"
+#else
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
+#endif
+
+
+
+
 #include <stdio.h>
 #include "display.h"
 
@@ -105,7 +113,7 @@ void display_init()
 
     sei();
 }
-
+#ifndef WINDOWS_TEST
 ISR(TIMER1_COMPA_vect)
 {
     uint8_t static current_digit = 0;
@@ -115,6 +123,7 @@ ISR(TIMER1_COMPA_vect)
 
     current_digit = (current_digit + 1) % 4;
 }
+#endif
 
 void shift_out(uint8_t data)
 {

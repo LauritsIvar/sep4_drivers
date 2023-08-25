@@ -8,6 +8,14 @@ void sei(void );
 #define RXEN0 4
 #define RXCIE0 7
 
+#define DDA6 6
+#define DDA4 4
+#define DDC7 7
+#define DDC1 1
+#define PG1 1
+
+#define PD7 7
+
 #define TXEN1 3
 #define RXEN1 4
 #define RXCIE1 7
@@ -56,6 +64,7 @@ uint8_t UCSR3A;
 #define UDRE2 5
 #define UDRE3 5
 void _delay_ms(int a);
+void _delay_us(int a);
 uint8_t DDRB;
 uint8_t PORTB;
 
@@ -78,3 +87,59 @@ uint8_t UDR3;
 uint8_t UCSR3B;
 uint8_t UBRR3H;
 uint8_t UBRR3L;
+
+uint8_t DDRA;
+uint8_t DDRC;
+
+uint8_t PORTC;
+uint8_t PORTA;
+
+uint8_t DDRG;
+uint8_t PORTG;
+
+
+uint8_t DDRD;
+uint8_t PORTD;
+uint8_t PINC;
+
+uint8_t DDRF;
+uint8_t PORTF;
+uint8_t PINF;
+
+#define PF1 1
+#define PF2 2
+#define PF3 3
+
+uint8_t DDRE;
+uint8_t PORTE;
+
+#define PE5 5
+#define PG5 5
+#define PH5 5
+#define PH4 4
+
+uint8_t DDRH;
+uint8_t TCCR1B;
+uint8_t OCR1A;
+uint8_t TIMSK1;
+uint8_t PORTH;
+
+#define WGM12 3
+#define CS11 1
+#define OCIE1A 1
+
+uint8_t DDRK;
+uint8_t PORTK;
+uint8_t TCNT1;
+uint8_t PINK;
+
+#define PK6 6
+#define PK5 5
+#define PK7 7
+#define PK4 4
+
+#define CS12 2
+
+#define PB6 6
+#define PB5 5
+#define PB4 4
