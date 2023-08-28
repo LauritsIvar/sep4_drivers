@@ -8,7 +8,7 @@
 
 
 
-static void dht11_init() {
+void dht11_init() {
 
 //Vcc
 DDRD|=(1<<PD2);
@@ -17,8 +17,7 @@ PORTD|=(1<<PD2);
 //GND
 DDRD|=(1<<PD0);
 PORTD&=~(1<<PD0);
-   // DATA_DDR |= (1 << DATA_BIT);
-    //DATA_PORT |= (1 << DATA_BIT);
+
 
 }
 #define MAX_TIMINGS	85
