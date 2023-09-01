@@ -72,10 +72,14 @@ void display_int(int16_t value) {
       }
 
   // Iterate over each digit from the least significant digit to the most significant digit
-  for (uint8_t i = 0; value > 0; i++) {
+    if (value ==0)
+    display_data[3]=0;
+    else
+    for (uint8_t i = 0; value > 0; i++) {
     display_data[3 - i] = value % 10; // Get the current digit and store it in the display_data[] array
     value /= 10; // Remove the current digit from the value
   }
+
 
 
     }
@@ -102,6 +106,7 @@ void display_init()
     TCCR1B |= (1 << CS11);
 
     sei();
+    display_data[0]=display_data[1]=display_data[2]=display_data[3]=17;
 }
 #ifndef WINDOWS_TEST
 ISR(TIMER1_COMPA_vect)
@@ -130,16 +135,16 @@ void shift_out(uint8_t data)
 
         // Pulse the clock pin
         PORTH |= (1 << CLOCK_PIN);
-        _delay_us(1);
+       // _delay_us(1);
         PORTH &= ~(1 << CLOCK_PIN);
-        _delay_us(1);
+        //_delay_us(1);
     }
 }
 
 void pulse_latch()
 {
     PORTG |= (1 << LATCH_PIN);
-    _delay_us(1);
+    //_delay_us(1);
     PORTG &= ~(1 << LATCH_PIN);
-    _delay_us(1);
+   // _delay_us(1);
 }
