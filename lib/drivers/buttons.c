@@ -19,7 +19,7 @@ uint8_t buttons_2_pressed(){
 }
 
 uint8_t buttons_3_pressed(){
-    if (!(PINF & (1 << PF2))) return 1;
+    if (!(PINF & (1 << PF3))) return 1;
     else return 0;
 }
 

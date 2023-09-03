@@ -5,6 +5,7 @@
 #include "leds.h"
 #include "light.h"
 #include "buzzer.h"
+#include "buttons.h"
 
 
 int main(void)
@@ -16,15 +17,28 @@ int main(void)
     display_init();
     leds_init();
     light_init();
+    buttons_init();
     
 
     while (1)
     {
-     light=light_read();
-      display_int(light);
-      _delay_ms(200);
-      sprintf(str,"Light = %d \n", light);
-      pc_comm_send_string_blocking(str);
+     if (buttons_1_pressed())
+      leds_turnOn(1);
+     else
+      leds_turnOff(1);
+
+           if (buttons_2_pressed())
+      leds_turnOn(2);
+     else
+      leds_turnOff(2);
+
+           if (buttons_3_pressed())
+      leds_turnOn(3);
+     else
+      leds_turnOff(3);
+     
+     
+     
 
 
       

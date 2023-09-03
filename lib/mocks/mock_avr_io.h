@@ -148,3 +148,19 @@ uint8_t PINK;
 #define PB6 6
 #define PB5 5
 #define PB4 4
+
+ uint8_t ADMUX;
+  uint8_t ADCSRA;
+  uint8_t ADCSRB;
+ uint8_t ADCL;
+  uint8_t ADCH;
+uint8_t DIDR2;
+#define REFS0 6
+#define ADEN 7
+#define ADPS2 2
+#define ADPS1 1
+#define MUX5 3
+#define ADC9D 1
+#define PK1 1
+#define PK2 2
+#define ADSC 6
