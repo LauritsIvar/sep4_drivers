@@ -50,12 +50,12 @@ void light_init(void) {
  */
 uint16_t light_read(void) {
 
-
+uint32_t timeout = 40000;//if 2cc for incrementing and evaluation the timeout is 5ms
     // Start the conversion
     ADCSRA |= (1 << ADSC);
 
     // Wait for the conversion to complete
-    while (ADCSRA & (1 << ADSC));
+    while ((ADCSRA & (1 << ADSC))&& timeout > 0){timeout--;};
 
     // Read the 10-bit ADC value
     // ADCL must be read first, then ADCH

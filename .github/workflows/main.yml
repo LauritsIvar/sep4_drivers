@@ -25,3 +25,7 @@ jobs:
         
       - name: run pc_comm test
         run: pio test -e win_test_pc_comm -f "test_pc_comm_win"  
+
+      - name: run Light test
+        run: pio test -e win_test_light -f "test_light_win"  
+
