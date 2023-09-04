@@ -17,6 +17,7 @@ void tearDown(void) {
 
 void test_uart_init0(){
     uart_init(USART_0, 9600, NULL);
+    
 
 }
 
