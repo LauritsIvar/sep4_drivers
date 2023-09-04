@@ -36,6 +36,10 @@ int main(void)
       leds_turnOn(3);
      else
       leds_turnOff(3);
+
+light = light_read();
+display_int(light);
+_delay_ms(100);
      
      
      

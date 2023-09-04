@@ -19,28 +19,25 @@
  */
 void light_init(void) {
 
-    
-    // Set reference voltage to AVCC and left adjust ADC result
-    // This will let us easily read the 8 most significant bits from the ADCH register
-    ADMUX = (1 << REFS0);
-
-    // Enable ADC and set prescaler to 64 (16MHz/64 = 250kHz)
-    // ADC must operate between 50kHz and 200kHz for its full 10-bit resolution
-    ADCSRA = (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1);
-    ADCSRB = (1<<MUX5);
-
-    // Disable digital input on PK1 (ADC9)
-    // This will reduce power consumption on the pin
-    DIDR2 = (1 << ADC9D);
-
-    DDRK &= ~(1 << PK1);  // Set PK1 as input
-    
     //Vcc
     DDRK|=(1 << PK2);
     PORTK|=(1 << PK2);
 
     //GND
     DDRK|=(1 << PK1);
+
+    // Set reference voltage to AVCC and left adjust ADC result
+    // The  MUX1:5 should be set to 10000 for choosing ADC8, which ius placed on PK0 (look at page 283)
+    ADMUX = (1 << REFS0);
+    ADCSRB = (1<<MUX5);
+    // Enable ADC and set prescaler to 64 (16MHz/128 = 125kHz)
+    // ADC must operate between 50kHz and 200kHz for its full 10-bit resolution
+    ADCSRA = (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1)| (1 << ADPS0);
+    
+
+    // Disable digital input on PK0 (ADC8) (page 287)
+    // This will reduce power consumption on the pin
+    DIDR2 = (1 << ADC8D);
 
 }
 
@@ -52,9 +49,7 @@ void light_init(void) {
  * @return 10-bit ADC value read from the photoresistor
  */
 uint16_t light_read(void) {
-    // Select ADC9 (PK1) as the input channel
-    // We only need to set the MUX4 bit to select ADC9
-    ADMUX = (ADMUX & 0xF8) ;
+
 
     // Start the conversion
     ADCSRA |= (1 << ADSC);
