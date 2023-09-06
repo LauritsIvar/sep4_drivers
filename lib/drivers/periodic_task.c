@@ -30,6 +30,7 @@ static uint16_t loops_c = 0;
 
 
 // Timer0 Compare Match A interrupt service routine
+#ifndef WINDOWS_TEST
 ISR(TIMER3_COMPA_vect) {
     if (cnt_a==0)
     {
@@ -67,6 +68,7 @@ ISR(TIMER3_COMPC_vect) {
         cnt_c--;
     }
 }
+#endif
 void init_timer3(){
 // Set Timer0 to CTC (Clear Timer on Compare Match) mode
     TCCR3A = 0;

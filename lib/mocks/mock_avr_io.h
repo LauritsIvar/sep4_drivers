@@ -1,5 +1,5 @@
 #pragma once
-#include <inttypes.h>
+#include <stdint.h>
 
 void cli(void);
 void sei(void );
@@ -167,3 +167,28 @@ extern uint8_t DIDR2;
 #define PK1 1
 #define PK2 2
 #define ADSC 6
+
+
+extern uint8_t TCCR3A;
+extern uint8_t TCCR3B;
+extern uint8_t OCR3A;
+extern uint8_t TIMSK3;
+extern uint8_t OCR3B;
+extern uint8_t OCR3C;
+
+#define CS32 2
+#define CS30 0
+#define OCIE3A 1
+#define OCIE3B 2
+#define OCIE3C 3
+
+
+extern uint8_t ADCSRA;
+extern uint8_t ADCL;
+extern uint8_t ADCH;
+#define ADC10D 2
+#define MUX1 1
+#define REFS0 6
+#define PK1 1
+#define PK0 0
+

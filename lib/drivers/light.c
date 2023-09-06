@@ -20,24 +20,24 @@
 void light_init(void) {
 
     //Vcc
-    DDRK|=(1 << PK2);
-    PORTK|=(1 << PK2);
+    DDRK|=(1 << PK0);
+    PORTK|=(1 << PK0);
 
     //GND
     DDRK|=(1 << PK1);
 
     // Set reference voltage to AVCC and left adjust ADC result
     // The  MUX1:5 should be set to 10000 for choosing ADC8, which ius placed on PK0 (look at page 283)
-    ADMUX = (1 << REFS0);
+    ADMUX = (1 << REFS0)|(1<<MUX1);
     ADCSRB = (1<<MUX5);
     // Enable ADC and set prescaler to 64 (16MHz/128 = 125kHz)
     // ADC must operate between 50kHz and 200kHz for its full 10-bit resolution
     ADCSRA = (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1)| (1 << ADPS0);
     
 
-    // Disable digital input on PK0 (ADC8) (page 287)
+    // Disable digital input on PK2 (ADC10) (page 287)
     // This will reduce power consumption on the pin
-    DIDR2 = (1 << ADC8D);
+    DIDR2 = (1 << ADC10D);
 
 }
 
