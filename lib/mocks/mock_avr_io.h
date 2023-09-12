@@ -126,7 +126,7 @@ extern uint8_t PORTE;
 
 extern uint8_t DDRH;
 extern uint8_t TCCR1B;
-extern uint8_t OCR1A;
+extern uint16_t OCR1A;
 extern uint8_t TIMSK1;
 extern uint8_t PORTH;
 
@@ -192,3 +192,21 @@ extern uint8_t ADCH;
 #define PK1 1
 #define PK0 0
 
+//hc-sr04
+//Vcc
+extern uint8_t DDRC;
+extern uint8_t  PORTC;
+#define  PC0 0
+
+//GND
+extern uint8_t  DDRC; 
+#define  PC6 6
+
+//Trigger
+extern uint8_t  DDRC;
+#define  PC2 2
+extern uint8_t  PORTC;
+
+//Echo
+extern uint8_t  PINC;
+#define PC4 4

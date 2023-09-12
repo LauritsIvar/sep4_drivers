@@ -2,13 +2,37 @@
 
 #include <inttypes.h>
 
+//Vcc
+#define DDR_Vcc DDRC
+#define PORT_Vcc PORTC
+#define P_Vcc PC0
+
+//GND
+#define DDR_Gnd DDRC //DDRK
+#define P_Gnd PC6 //PK7
+
+//Trigger
+#define DDR_Trig DDRC
+#define P_Trig PC2
+#define PORT_trig PORTC
+
+//Echo
+#define PIN_Echo PINC
+#define P_Echo PC4
+
 
 
 void hc_sr04_init()
 {
+    //Vcc
+    DDR_Vcc|=(1 << P_Vcc);
+    PORT_Vcc|=(1 << P_Vcc);
 
-    DDRK = (1 << PK7) | (1 << PK5) | (1 << PK4);
-    PORTK = (1 << PK4);
+    //GND
+    DDR_Gnd|=(1 << P_Gnd);
+
+    //Trigger
+    DDR_Trig|=(1 << P_Trig);
 }
 
 uint16_t hc_sr04_takeMeasurement()
@@ -16,9 +40,9 @@ uint16_t hc_sr04_takeMeasurement()
     uint16_t cnt = 0;
 
     _delay_us(10);
-    PORTK |= (1 << PK5); // trig is set to high for 10 us to start measurement.
+    PORT_trig |= (1 << P_Trig); // trig is set to high for 10 us to start measurement.
     _delay_us(10);
-    PORTK &= ~(1 << PK5);
+    PORT_trig &= ~(1 << P_Trig);
 
 
     
@@ -31,13 +55,13 @@ uint16_t hc_sr04_takeMeasurement()
 //    TCCR1B &= ~(1 << CS10);
    
 
-    while (!(PINK & (1 << PK6)))
+    while (!(PIN_Echo & (1 << P_Echo)))
         ; // Wait for signal to begin /TODO implement some timeout...
 
 
     TCNT1 = 0; // Setting the timer to Zero. This is  messing up the display, but hopefully the reader of the display wont notice.
 
-    while (PINK & (1 << PK6))
+    while (PIN_Echo & (1 << P_Echo))
     {
         // Check for timer overflow (24 ms)
         if (TCNT1 >= (F_CPU / 256) * 0.024)

@@ -30,7 +30,7 @@ void test_pc_comm_default_callback_func_is_null()
 {
     light_init();
 
-  TEST_ASSERT_EQUAL(66,ADMUX);
+  TEST_ASSERT_EQUAL(64,ADMUX);
 
 }
 

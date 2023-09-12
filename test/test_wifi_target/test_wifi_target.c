@@ -57,7 +57,7 @@ void receive()
 void test_wifi_create_TCP_connection()
 {
 
-    TEST_ASSERT_EQUAL(WIFI_OK, wifi_command_create_TCP_connection("10.0.0.42", 23, receive, received_buffer));
+    TEST_ASSERT_EQUAL(WIFI_OK, wifi_command_create_TCP_connection("10.0.0.40", 23, receive, received_buffer));
     TEST_ASSERT_EQUAL(WIFI_OK, wifi_command_TCP_transmit("1234567890", 4));
 }
 
