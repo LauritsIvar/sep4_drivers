@@ -27,11 +27,6 @@ int main(void)
 {
     UNITY_BEGIN();
     //_delay_ms(4000);
-
     RUN_TEST(test_light_returns_a_value);
-
-
-
-
     return UNITY_END();
 }

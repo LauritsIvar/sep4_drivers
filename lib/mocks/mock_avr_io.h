@@ -210,3 +210,38 @@ extern uint8_t  PORTC;
 //Echo
 extern uint8_t  PINC;
 #define PC4 4
+
+
+//pir
+//Vcc
+
+extern uint8_t  PORTK;
+#define   PK5 5
+
+//GND
+extern uint8_t  DDRK; //DDRK
+#define  PK3 3 //PK7
+
+//signal
+
+#define  PK4 4
+
+extern uint8_t PINK;
+
+#define PCIE2 2
+#define PCINT20 4
+extern uint8_t PCICR;
+extern uint8_t PCMSK2;
+
+
+//tone 
+#define PA1 1
+extern uint8_t TCCR2A;
+extern uint8_t TCCR2B;
+extern uint8_t TCNT2;
+
+        // Busy-wait
+#define CS22 2
+#define CS21 1
+#define CS20 0
+
