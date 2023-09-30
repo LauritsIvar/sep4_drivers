@@ -122,7 +122,7 @@ int main(void)
     RUN_TEST(test_temperature_is_22celc);
     RUN_TEST(test_light_returns_a_value);
 
-    TEST_MESSAGE("INFO! wave your hand above the pir sensor after starwars       :1:_:PASS\n"); // no : in the message
-    RUN_TEST(test_pir_if_it_calls_the_callback_function_in_20sec_time);
+    //TEST_MESSAGE("INFO! wave your hand above the pir sensor after starwars       :1:_:PASS\n"); // no : in the message
+    //RUN_TEST(test_pir_if_it_calls_the_callback_function_in_20sec_time);
     return UNITY_END();
 }

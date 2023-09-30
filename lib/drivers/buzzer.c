@@ -1,21 +1,23 @@
+#include "buzzer.h"
 #include "includes.h"
 
-
+#define BUZ_BIT PE5
+#define BUZ_DDR DDRE
+#define BUZ_PORT PORTE
 
 void buzzer_beep(){
 
     //Save the state of the 2 registers
-    uint8_t DDRE_state = DDRE;
-    uint8_t PORTE_state = PORTE;
+    uint8_t DDR_state = BUZ_DDR;
+    uint8_t PORT_state = BUZ_PORT;
 
 
-    DDRE |= (1<<PE5); //init to be an output
-    PORTE&=~(1<<PE5); //Turn On (Active low)
+    BUZ_DDR |= (1<<BUZ_BIT); //init to be an output
+    BUZ_PORT&=~(1<<BUZ_BIT); //Turn On (Active low)
     _delay_ms(5);
-    PORTE|=(1<<PE5); //Turn Off (Active low)
+    BUZ_PORT|=(1<<BUZ_BIT); //Turn Off (Active low)
 
     // Restore the previous state. 
-    DDRE = DDRE_state;
-    PORTE = PORTE_state;
-
+    BUZ_DDR = DDR_state;
+    BUZ_PORT = PORT_state;
 }

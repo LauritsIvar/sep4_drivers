@@ -247,3 +247,6 @@ extern uint8_t TCNT2;
 
 
 #define PE3 3
+#define PC7 7
+#define PA6 6
+#define PA4 4

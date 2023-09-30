@@ -1,29 +1,36 @@
 #include "dht11.h"
 #include "includes.h"
 
+//Data (The data goes both ways)
 #define DATA_BIT PD1
 #define DATA_PIN PIND
 #define DATA_DDR DDRD
 #define DATA_PORT PORTD
 
+//VCC
+#define VCC_BIT PD2
+#define VCC_DDR DDRD
+#define VCC_PORT PORTD
+
+//GND
+#define GND_BIT PD0
+#define GND_DDR DDRD
+#define GND_PORT PORTD
 
 
 void dht11_init() {
 
 //Vcc
-DDRD|=(1<<PD2);
-PORTD|=(1<<PD2);
+VCC_DDR|=(1<<VCC_BIT);
+VCC_PORT|=(1<<VCC_BIT);
 
 //GND
-DDRD|=(1<<PD0);
-PORTD&=~(1<<PD0);
-
-
+GND_DDR|=(1<<GND_BIT);
+GND_PORT&=~(1<<GND_BIT);
 }
+
+
 #define MAX_TIMINGS	85
-
-
-
 DHT11_ERROR_MESSAGE_t dht11_get(uint8_t* humidity_integer, uint8_t*  humidity_decimal, uint8_t* temperature_integer, uint8_t* temperature_decimal)
 {
     
