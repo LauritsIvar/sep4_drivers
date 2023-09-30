@@ -245,3 +245,5 @@ extern uint8_t TCNT2;
 #define CS21 1
 #define CS20 0
 
+
+#define PE3 3

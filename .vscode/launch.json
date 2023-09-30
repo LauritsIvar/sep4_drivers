@@ -12,21 +12,21 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-            "executable": "c:/Users/Laurits/Documents/GitHub/sep4_drivers/.pio/build/target_test/firmware.elf",
-            "projectEnvName": "target_test",
+            "executable": "c:/Users/Laurits/Documents/GitHub/sep4_drivers/.pio/build/target_run/firmware.elf",
+            "projectEnvName": "target_run",
             "toolchainBinDir": "C:/Users/Laurits/.platformio/packages/toolchain-atmelavr/bin",
             "internalConsoleOptions": "openOnSessionStart",
             "preLaunchTask": {
                 "type": "PlatformIO",
-                "task": "Pre-Debug (target_test)"
+                "task": "Pre-Debug (target_run)"
             }
         },
         {
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
-            "executable": "c:/Users/Laurits/Documents/GitHub/sep4_drivers/.pio/build/target_test/firmware.elf",
-            "projectEnvName": "target_test",
+            "executable": "c:/Users/Laurits/Documents/GitHub/sep4_drivers/.pio/build/target_run/firmware.elf",
+            "projectEnvName": "target_run",
             "toolchainBinDir": "C:/Users/Laurits/.platformio/packages/toolchain-atmelavr/bin",
             "internalConsoleOptions": "openOnSessionStart"
         },
@@ -34,8 +34,8 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (without uploading)",
-            "executable": "c:/Users/Laurits/Documents/GitHub/sep4_drivers/.pio/build/target_test/firmware.elf",
-            "projectEnvName": "target_test",
+            "executable": "c:/Users/Laurits/Documents/GitHub/sep4_drivers/.pio/build/target_run/firmware.elf",
+            "projectEnvName": "target_run",
             "toolchainBinDir": "C:/Users/Laurits/.platformio/packages/toolchain-atmelavr/bin",
             "internalConsoleOptions": "openOnSessionStart",
             "loadMode": "manual"
