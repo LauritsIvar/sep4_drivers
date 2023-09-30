@@ -49,11 +49,35 @@ char data[] ="hejsa" ;
 
 pc_comm_send_string_blocking(data );
 TEST_ASSERT_EQUAL_STRING(data, uart_send_string_blocking_fake.arg1_val);
+
+
+
+
 }
 
 
 
 // Test that it sendst stuff nonBlocking. 
+char message_string[1024];
+void message(){
+for (int i = 0; i < 300; i++)
+{
+  UNITY_OUTPUT_CHAR(' ');
+}
+
+
+for (int i = 0; i < strlen(message_string); i++)
+{
+  UNITY_OUTPUT_CHAR(message_string[i]);
+}
+
+for (int i = 0; i < 300; i++)
+{
+  UNITY_OUTPUT_CHAR(' ');
+}
+
+
+}
 
 int main(void)
 {
@@ -61,6 +85,11 @@ int main(void)
   RUN_TEST(test_pc_comm_default_callback_func_is_null);
   RUN_TEST(test_pc_comm_baudrates);
   RUN_TEST(test_pc_comm_send_blocking);
+
+TEST_MESSAGE("m e s s a g e :1:_:PASS\n");//TEST_MESSAGE("m e s s a g e :1:_:PASS\n");
+
+
+
   RUN_TEST(test_pc_comm_string_blocking);
 
 

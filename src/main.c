@@ -7,12 +7,13 @@
 #include "buzzer.h"
 #include "buttons.h"
 #include "periodic_task.h"
-#include "ADXL345.h"
+#include "adxl345.h"
 #include "hc_sr04.h"
 #include "wifi.h"
 #include "avr/power.h"
 #include "pir.h"
 #include "tone.h"
+#include <stdio.h>
 
 
 void timer2_delay_us(uint32_t delay_us) {
@@ -76,39 +77,32 @@ leds_init();
 display_init();
 tone_init();
 
-tone_play_starwars();
+//tone_play_starwars();
+pc_comm_init(9600, NULL);
+
+adxl345_init();
 int i=0;
-//pa1
+uint8_t temp;
+int16_t x,y,z;
+char string[128];
+while (1)
+{
+    /*adxl345_read_xyz(&x, &y, &z);
+    sprintf(string, "x=%d\ny=%d\nz=%d\n\n",x/834,y/834,z/834);
+    pc_comm_send_string_blocking(string);
+    display_int(z/834);*/
+display_int(i++);
+if (i>9998)
+{
+    i=-990;
+}
 
+_delay_ms(10);
 
-
-
-
-
-    // Play the beginning of the Star Wars theme
-/*for (int thisNote = 0; thisNote < notes * 2; thisNote = thisNote + 2) {
-
-    // calculates the duration of each note
-    divider = melody[thisNote + 1];
-    if (divider > 0) {
-      // regular note, just proceed
-      noteDuration = (wholenote) / divider;
-    } else if (divider < 0) {
-      // dotted notes are represented with negative durations!!
-      noteDuration = (wholenote) / abs(divider);
-      noteDuration *= 1.5; // increases the duration in half for dotted notes
-    }
-
-    // we only play the note for 90% of the duration, leaving 10% as a pause
-    //tone(buzzer, melody[thisNote], noteDuration*0.9);
-    tone_play(melody[thisNote], noteDuration*0.9); 
-
-    // Wait for the specief duration before playing the next note.
-    //delay(noteDuration);
     
-    // stop the waveform generation before the next note.
-    //noTone(buzzer);
-  }*/
+}
+
+
 return 0;}
    
 

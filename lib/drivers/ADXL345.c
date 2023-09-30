@@ -1,4 +1,4 @@
-#include "ADXL345.h"
+#include "adxl345.h"
 #include "includes.h"
 
 // ADXL345 Register Addresses
@@ -18,7 +18,7 @@
 
 uint8_t spi_transfer(uint8_t data);
 
-void ADXL345_init(void)
+void adxl345_init(void)
 {
     DDRA |= (1 << DD_MOSI) | (1 << DD_SCK);
     DDRC |= (1 << DD_SS);
@@ -42,7 +42,7 @@ void ADXL345_init(void)
     _delay_ms(20);
 
     adxl345_write_register(ADXL345_POWER_CTL, ADXL345_MEASURE_MODE);
-    adxl345_write_register(ADXL345_DATA_FORMAT, 0);
+    adxl345_write_register(ADXL345_DATA_FORMAT, 0b00000101);
 }
 
 uint8_t spi_transfer(uint8_t data)

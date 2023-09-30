@@ -112,9 +112,11 @@ void display_init()
 ISR(TIMER1_COMPA_vect)
 {
     uint8_t static current_digit = 0;
+    PORTG &= ~(1 << LATCH_PIN);
     shift_out(~hex_digits[display_data[current_digit]]);
     shift_out(1 << current_digit);
-    pulse_latch();
+    PORTG |= (1 << LATCH_PIN);
+    //pulse_latch();
 
     current_digit = (current_digit + 1) % 4;
 }

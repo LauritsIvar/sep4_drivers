@@ -26,7 +26,7 @@ PORTD&=~(1<<PD0);
 
 DHT11_ERROR_MESSAGE_t dht11_get(uint8_t* humidity_integer, uint8_t*  humidity_decimal, uint8_t* temperature_integer, uint8_t* temperature_decimal)
 {
-    dht11_init();
+    
 	uint8_t laststate	= 1;
 	uint8_t counter		= 0;
 	uint8_t j			= 0, i;
