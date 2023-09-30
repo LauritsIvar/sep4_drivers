@@ -1,7 +1,7 @@
 // Tests the Wifi module on target
 #define WIFI_SSID "Den gamle daarlige router"
 #define WIFI_PASSWORD "vildfred"
-#define TCP_SERVER "10.0.0.34" // should be running and in echo mode
+#define TCP_SERVER "10.0.0.34" // should be running and in echo mode for the test to pass. 
 
 #include "unity.h"
 #include "wifi.h"
