@@ -1,10 +1,19 @@
 #include "display.h"
 #include "includes.h"
+//LATCH
+#define LATCH_BIT PG5
+#define LATCH_DDR DDRG
+#define LATCH_PORT PORTG
 
+//DATA
+#define DATA_BIT PH5  // Serial Data Input.
+#define DATA_DDR DDRH
+#define DATA_PORT PORTH
 
-#define LATCH_PIN PG5
-#define DATA_PIN PH5  // Serial Data Input.
-#define CLOCK_PIN PH4 // SFTCLK stands for Shift Clock or Shift Register Clock
+// CLOCK
+#define CLOCK_BIT PH4 // SFTCLK stands for Shift Clock or Shift Register Clock
+#define CLOCK_DDR DDRH
+#define CLOCK_PORT PORTH
 
 const static uint8_t hex_digits[] = {
     0b00111111, // 0
@@ -29,9 +38,8 @@ const static uint8_t hex_digits[] = {
 
 uint8_t static display_data[] = {0x3, 0x3, 0x3, 0x3};
 
-
-
-void display_setValues(uint8_t seg1, uint8_t seg2, uint8_t seg3, uint8_t seg4 ){
+void display_setValues(uint8_t seg1, uint8_t seg2, uint8_t seg3, uint8_t seg4)
+{
     display_data[0] = seg1;
     display_data[1] = seg2;
     display_data[2] = seg3;
@@ -40,58 +48,60 @@ void display_setValues(uint8_t seg1, uint8_t seg2, uint8_t seg3, uint8_t seg4 ){
 
 // Function to update the display_data[] array with the digits of a signed integer value
 // Input: value - a signed integer between -999 and 9999
-void display_int(int16_t value) {
-  if (value > 9999 || value < -999) {
-    return; // Ignore out-of-range values
-  }
-
-  uint8_t is_negative = 0; // Flag to indicate if the input value is negative
-
-  if (value < 0) {
-    is_negative = 1; // Set the negative flag
-    value = -value; // Convert the value to its positive equivalent
-  }
-
-  // Initialize display_data[] with a blank space (0x11)
-  display_data[0] = display_data[1] = display_data[2] = display_data[3] = 0x11;
-
-
-  if (is_negative) {
-    if (value<10)
+void display_int(int16_t value)
+{
+    if (value > 9999 || value < -999)
     {
-        display_data[0]=17; // empty
-        display_data[1]=17; // empty
-        display_data[2]=16; // minus
+        return; // Ignore out-of-range values
     }
-    else if (value<100)
-    {
-        display_data[0]=17; // empty
-        display_data[1]=16; // minus
-    }
-    else display_data[0]=16; // minus
-      }
 
-  // Iterate over each digit from the least significant digit to the most significant digit
-    if (value ==0)
-    display_data[3]=0;
+    uint8_t is_negative = 0; // Flag to indicate if the input value is negative
+
+    if (value < 0)
+    {
+        is_negative = 1; // Set the negative flag
+        value = -value;  // Convert the value to its positive equivalent
+    }
+
+    // Initialize display_data[] with a blank space (0x11)
+    display_data[0] = display_data[1] = display_data[2] = display_data[3] = 0x11;
+
+    if (is_negative)
+    {
+        if (value < 10)
+        {
+            display_data[0] = 17; // empty
+            display_data[1] = 17; // empty
+            display_data[2] = 16; // minus
+        }
+        else if (value < 100)
+        {
+            display_data[0] = 17; // empty
+            display_data[1] = 16; // minus
+        }
+        else
+            display_data[0] = 16; // minus
+    }
+
+    // Iterate over each digit from the least significant digit to the most significant digit
+    if (value == 0)
+        display_data[3] = 0;
     else
-    for (uint8_t i = 0; value > 0; i++) {
-    display_data[3 - i] = value % 10; // Get the current digit and store it in the display_data[] array
-    value /= 10; // Remove the current digit from the value
-  }
-
-
-
-    }
-
+        for (uint8_t i = 0; value > 0; i++)
+        {
+            display_data[3 - i] = value % 10; // Get the current digit and store it in the display_data[] array
+            value /= 10;                      // Remove the current digit from the value
+        }
+}
 
 void shift_out(uint8_t data);
 void pulse_latch();
 
 void display_init()
 {
-    DDRG |= (1 << LATCH_PIN);
-    DDRH |= (1 << DATA_PIN) | (1 << CLOCK_PIN);
+    LATCH_DDR |= (1 << LATCH_BIT);
+    DATA_DDR |= (1 << DATA_BIT); 
+    CLOCK_DDR|= (1 << CLOCK_BIT);
 
     // Set up Timer1 for CTC mode (Clear Timer on Compare Match)
     TCCR1B |= (1 << WGM12);
@@ -106,17 +116,17 @@ void display_init()
     TCCR1B |= (1 << CS11);
 
     sei();
-    display_data[0]=display_data[1]=display_data[2]=display_data[3]=17;
+    display_data[0] = display_data[1] = display_data[2] = display_data[3] = 17;
 }
 #ifndef WINDOWS_TEST
 ISR(TIMER1_COMPA_vect)
 {
     uint8_t static current_digit = 0;
-    PORTG &= ~(1 << LATCH_PIN);
+    LATCH_PORT &= ~(1 << LATCH_BIT);
     shift_out(~hex_digits[display_data[current_digit]]);
     shift_out(1 << current_digit);
-    PORTG |= (1 << LATCH_PIN);
-    //pulse_latch();
+    LATCH_PORT |= (1 << LATCH_BIT);
+    // pulse_latch();
 
     current_digit = (current_digit + 1) % 4;
 }
@@ -128,25 +138,25 @@ void shift_out(uint8_t data)
     {
         if (data & (1 << (7 - i)))
         {
-            PORTH |= (1 << DATA_PIN);
+            DATA_PORT |= (1 << DATA_BIT);
         }
         else
         {
-            PORTH &= ~(1 << DATA_PIN);
+            DATA_PORT &= ~(1 << DATA_BIT);
         }
 
         // Pulse the clock pin
-        PORTH |= (1 << CLOCK_PIN);
-       // _delay_us(1);
-        PORTH &= ~(1 << CLOCK_PIN);
+        CLOCK_PORT |= (1 << CLOCK_BIT);
+        // _delay_us(1);
+        CLOCK_PORT &= ~(1 << CLOCK_BIT);
         //_delay_us(1);
     }
 }
 
 void pulse_latch()
 {
-    PORTG |= (1 << LATCH_PIN);
+    LATCH_PORT |= (1 << LATCH_BIT);
     //_delay_us(1);
-    PORTG &= ~(1 << LATCH_PIN);
-   // _delay_us(1);
+    LATCH_PORT &= ~(1 << LATCH_BIT);
+    // _delay_us(1);
 }

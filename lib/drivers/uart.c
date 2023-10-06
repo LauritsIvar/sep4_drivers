@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdlib.h>
-#include "led_hal.h"
+
 #include <string.h>
 
 #include "includes.h"
@@ -71,7 +71,7 @@ ISR(USART2_RX_vect)
 
 ISR(USART3_RX_vect)
 {
-    //led_hal_turnOn();
+
     // If a valid callback has been set, call it
     if (usart3_rx_callback != NULL)
     {

@@ -6,8 +6,6 @@
 #include <util/delay.h>
 #endif
 
-
-
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>

@@ -27,19 +27,28 @@ int main(void)
 
 
 
-int i=0;
-uint8_t angle_array[]={0,125,127,128,129,130,180};
+int numbers[]={-999,-888,-1234,0,66,1111,2222,5555,8888,9999};
 while (1)
 {
 
-    display_int(angle_array[i]);
-    //(angle_array[i]);
+while (1)
+{
+    display_setValues(15,10,16,17);
+    _delay_ms(1500);
+     display_setValues(0,2,3,4);
+         _delay_ms(1500);
+     display_setValues(5,6,7,8);
+              _delay_ms(1500);
+     display_setValues(9,10,11,12);
+                   _delay_ms(1500);
+     display_setValues(13,14,15,16);
+                      _delay_ms(1500);
+     display_setValues(17,18,19,20);  
 
-   if (i==6)
-   {
-    i=0;
-   }
-   i++;
+      _delay_ms(1500);
+     
+}
+
    
 }
 

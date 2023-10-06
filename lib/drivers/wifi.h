@@ -37,7 +37,7 @@ typedef enum{
 typedef void (*WIFI_TCP_Callback_t)();
 
 /**
- * @brief Initialize the WiFi module.
+ * @brief Initialize the WiFi module. After it have been initialized it can take up to 4 seconds before its ready. 
  * 
  */
 void wifi_init();
@@ -105,3 +105,9 @@ WIFI_ERROR_MESSAGE_t wifi_command_TCP_transmit(uint8_t *data, uint16_t length);
  * @return WIFI_ERROR_MESSAGE_t Error message based on the response from the module.
  */
 WIFI_ERROR_MESSAGE_t wifi_command_quit_AP();
+
+/**
+ * @brief  Closes thhe TCP connection
+ * @return WIFI_ERROR_MESSAGE_t Error message based on the response from the module.
+ */
+WIFI_ERROR_MESSAGE_t wifi_command_close_TCP_connection();

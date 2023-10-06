@@ -4,7 +4,7 @@
 // Production
 #include "wifi.h"
 #include "uart.h"
-#include "led_hal.h"
+
 
 
 
@@ -121,6 +121,13 @@ WIFI_ERROR_MESSAGE_t wifi_command_set_to_single_Connection()
 {
     return wifi_command("AT+CIPMUX=0", 1);
 }
+
+WIFI_ERROR_MESSAGE_t wifi_command_close_TCP_connection()
+{
+    return wifi_command("AT+CIPCLOSE", 5);
+}
+
+
 
 #define BUF_SIZE 128
 #define IPD_PREFIX "+IPD,"

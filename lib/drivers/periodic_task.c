@@ -129,11 +129,8 @@ void timer_init_c(void (*user_function_c)(void), uint32_t interval_ms_c) {
 }
 
 
-
+// not done yet... 
 float get_exact_interval_a(void) {
     return ((float)(OCR3A + 1) / (F_CPU / 1024)) * 1000.0;
 }
 
-float get_exact_interval_b(void) {
-    return 5;//((float)(OCR0B + 1) / (F_CPU / 1024)) * 1000.0;
-}

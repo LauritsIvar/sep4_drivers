@@ -1,7 +1,8 @@
 // Tests the Wifi module on target
 #define WIFI_SSID "Den gamle daarlige router"
 #define WIFI_PASSWORD "vildfred"
-#define TCP_SERVER "10.0.0.34" // should be running and in echo mode for the test to pass. 
+#define TCP_SERVER "10.0.0.35" // should be running and in echo mode for the test to pass. 
+#define TCP_PORT 23
 
 #include "unity.h"
 #include "wifi.h"
@@ -71,14 +72,16 @@ void receive()
 }
 void test_wifi_create_TCP_connection()
 {
-    TEST_ASSERT_EQUAL(WIFI_OK, wifi_command_create_TCP_connection(TCP_SERVER, 23, receive, received_buffer));
+    TEST_ASSERT_EQUAL(WIFI_OK, wifi_command_create_TCP_connection(TCP_SERVER, TCP_PORT, receive, received_buffer));
     TEST_ASSERT_EQUAL(WIFI_OK, wifi_command_TCP_transmit((uint8_t *)"1234567890", 4));
+     _delay_ms(500);
 }
 
 void test_wifi_send_stuff()
 {
 
     TEST_ASSERT_EQUAL(WIFI_OK, wifi_command_TCP_transmit((uint8_t *)"1234567890", 4));
+     _delay_ms(500);
 }
 
 void test_wifi_receive_stuff()
@@ -88,6 +91,15 @@ void test_wifi_receive_stuff()
 
     TEST_ASSERT_EQUAL_STRING("1234", received_buffer);
 }
+
+void test_wifi_close_tcp(){
+    TEST_ASSERT_EQUAL(WIFI_OK, wifi_command_close_TCP_connection());
+}
+
+void test_wifi_quit_AP(){
+    TEST_ASSERT_EQUAL(WIFI_OK, wifi_command_quit_AP());
+}
+
 
 int main(void)
 {
@@ -102,6 +114,9 @@ int main(void)
 
     RUN_TEST(test_wifi_send_stuff);
     RUN_TEST(test_wifi_receive_stuff);
+
+    RUN_TEST(test_wifi_close_tcp);
+    RUN_TEST(test_wifi_quit_AP);
 
     return UNITY_END();
 }

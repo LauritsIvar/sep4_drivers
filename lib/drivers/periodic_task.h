@@ -31,21 +31,3 @@ void timer_init_a(void (*user_function_a)(void), uint32_t interval_ms_a);
  */
 void timer_init_b(void (*user_function_b)(void), uint32_t interval_ms_b);
 
-/**
- * @brief Get the exact interval for task A
- *
- * This function returns the exact interval in milliseconds for task A.
- *
- * @return Exact interval in milliseconds for task A
- */
-float get_exact_interval_a(void);
-
-/**
- * @brief Get the exact interval for task B
- *
- * This function returns the exact interval in milliseconds for task B.
- *
- * @return Exact interval in milliseconds for task B
- */
-float get_exact_interval_b(void);
-

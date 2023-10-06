@@ -54,9 +54,18 @@ uint16_t hc_sr04_takeMeasurement()
 //    TCCR1B &= ~(1 << CS11);
 //    TCCR1B &= ~(1 << CS10);
    
-
+TCNT1 = 0;
     while (!(PIN_Echo & (1 << P_Echo)))
-        ; // Wait for signal to begin /TODO implement some timeout...
+    {
+
+                // Check for timer overflow (24 ms)
+        if (TCNT1 >= (F_CPU / 256) * 0.1) //timeout after 100ms. Chip is not working
+        {
+            // Timer overflowed, return 0
+            return 0;
+        }
+    }
+         // Wait for signal to begin /TODO implement some timeout...
 
 
     TCNT1 = 0; // Setting the timer to Zero. This is  messing up the display, but hopefully the reader of the display wont notice.

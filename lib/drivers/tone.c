@@ -1,13 +1,17 @@
 #include "tone.h"
 #include "includes.h"
+
+#define BUZ_BIT PA1
+#define BUZ_DDR DDRA
+#define BUZ_PORT PORTA
+
 void tone_init(){
-DDRA|=(1<<PA1);
+BUZ_DDR|=(1<<BUZ_BIT);
 }
 
 
 void tone_play(uint16_t frequency, uint16_t duration) {
-    // Initialize PA1 as output
-    DDRA |= (1 << PA1);
+
 
     // Calculate the half-period delay in microseconds
     uint16_t delay_us = 500000 / frequency;
@@ -59,7 +63,7 @@ void tone_play(uint16_t frequency, uint16_t duration) {
     // Generate the tone
     for (uint16_t i = 0; i < loop; i++) {
         // Set PA1 high
-        PORTA |= (1 << PA1);
+        BUZ_PORT |= (1 << BUZ_BIT);
             // Reset the timer counter
     TCNT2 = 0;
 
@@ -69,7 +73,7 @@ void tone_play(uint16_t frequency, uint16_t duration) {
     }
 
         // Set PA1 low
-        PORTA &= ~(1 << PA1);
+        BUZ_PORT &= ~(1 << BUZ_BIT);
             // Reset the timer counter
     TCNT2 = 0;
 
