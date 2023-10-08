@@ -1,11 +1,11 @@
 # sep4_drivers
 This repository contains a collection of drivers designed to to work with the hardware at SEP4 at Software Technology Engineering at VIA. All drivers are located in the lib/drivers directory.
 
-Driver Descriptions
-##1. adxl345.h
+
+## 1. adxl345.h
 This driver interfaces with the ADXL345 chip, a small, thin, ultralow power, 3-axis accelerometer with high resolution (13-bit) measurement at up to ±16 g. It can be used to measure the static acceleration of gravity in tilt-sensing applications, as well as dynamic acceleration resulting from motion or shock.
 
-##2. buttons.h
+## 2. buttons.h
 This driver is designed to control the three buttons located on top of the multifunction shield.
 
 ##3. buzzer.h
