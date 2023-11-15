@@ -69,7 +69,9 @@ ISR(TIMER3_COMPC_vect) {
     }
 }
 #endif
-void init_timer3(){
+
+
+static void init_timer3(){
 // Set Timer0 to CTC (Clear Timer on Compare Match) mode
     TCCR3A = 0;
 
@@ -81,7 +83,7 @@ void init_timer3(){
 }
 
 
-void timer_init_a(void (*user_function_a)(void), uint32_t interval_ms_a) {
+void periodic_task_init_a(void (*user_function_a)(void), uint32_t interval_ms_a) {
     user_func_a = user_function_a;
     init_timer3();
 
@@ -99,7 +101,7 @@ void timer_init_a(void (*user_function_a)(void), uint32_t interval_ms_a) {
     TIMSK3 |= (1 << OCIE3A);
 }
 
-void timer_init_b(void (*user_function_b)(void), uint32_t interval_ms_b) {
+void periodic_task_init_b(void (*user_function_b)(void), uint32_t interval_ms_b) {
     user_func_b = user_function_b;
     init_timer3();
 
@@ -113,7 +115,7 @@ void timer_init_b(void (*user_function_b)(void), uint32_t interval_ms_b) {
     TIMSK3 |= (1 << OCIE3B);
 }
 
-void timer_init_c(void (*user_function_c)(void), uint32_t interval_ms_c) {
+void periodic_task_init_c(void (*user_function_c)(void), uint32_t interval_ms_c) {
     user_func_c = user_function_c;
     init_timer3();
 
