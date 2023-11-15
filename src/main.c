@@ -23,34 +23,16 @@ int main(void)
     //();
     display_init();
     leds_init();
-    DDRE |= (1 << PE3);
+    light_init();
 
-
-
-int numbers[]={-999,-888,-1234,0,66,1111,2222,5555,8888,9999};
-while (1)
-{
 
 while (1)
 {
-    display_setValues(15,10,16,17);
-    _delay_ms(1500);
-     display_setValues(0,2,3,4);
-         _delay_ms(1500);
-     display_setValues(5,6,7,8);
-              _delay_ms(1500);
-     display_setValues(9,10,11,12);
-                   _delay_ms(1500);
-     display_setValues(13,14,15,16);
-                      _delay_ms(1500);
-     display_setValues(17,18,19,20);  
-
-      _delay_ms(1500);
-     
+    display_int(light_read());
+_delay_ms(300);
 }
 
    
-}
 
 
     return 0;

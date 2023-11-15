@@ -113,10 +113,11 @@ void test_light_is_is_light()
     _delay_ms(1000);
 
     uint16_t light = light_read();
-    TEST_ASSERT_TRUE_MESSAGE((light > 500 && light < 1020), "There should be light, (light > 500 && light < 1020)");
     char message[1024];
     sprintf(message, "INFO! photo_resistor while light measurement= %d       :1:_:PASS\n", light);
     TEST_MESSAGE(message); // TEST_MESSAGE("m e s s a g e :1:_:PASS\n"); // no : in the message
+
+    TEST_ASSERT_TRUE_MESSAGE((light > 500 && light < 1020), "There should be light, (light > 500 && light < 1020)");
 }
 
 uint8_t pir_callback_called = 0;
