@@ -86,7 +86,9 @@ void tone_play(uint16_t frequency, uint16_t duration) {
     TCCR2B = 0;
 }
 
-void tone_play_starwars(){
+
+void tone_play_starwars()
+{
 
     tone_play(392, 500);  // G4 for 500 ms
     tone_play(392, 500);  // G4 for 500 ms
@@ -98,13 +100,13 @@ void tone_play_starwars(){
     tone_play(466, 150);  // B4 for 150 ms
     tone_play(392, 1000); // G4 for 1000 ms
 
-    tone_play(784, 500);  // G5 for 500 ms
-    tone_play(784, 500);  // G5 for 500 ms
-    tone_play(784, 500);  // G5 for 500 ms
-    tone_play(740, 350);  // F#5 for 350 ms
-    tone_play(587, 150);  // D5 for 150 ms
-    tone_play(523, 500);  // C5 for 500 ms
-    tone_play(466, 350);  // B4 for 350 ms
-    tone_play(440, 150);  // A4 for 150 ms
+    tone_play(587, 500);  // D5 for 500 ms
+    tone_play(587, 500);  // D5 for 500 ms
+    tone_play(587, 500);  // D5 for 500 ms
+    tone_play(622, 350);  // D#5 for 350 ms
+    tone_play(466, 150);  // B4 for 150 ms
+    tone_play(370, 500);  // F#4 for 500 ms
+    tone_play(311, 350);  // Eb4 for 350 ms
+    tone_play(466, 150);  // B4 for 150 ms
     tone_play(392, 1000); // G4 for 1000 ms
 }

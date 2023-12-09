@@ -4,6 +4,7 @@
 #include "display.h"
 #include "leds.h"
 #include "servo.h"
+#include "tone.h"
 
 
 void func_a(){
@@ -49,7 +50,9 @@ pc_comm_send_string_blocking("   _______________                        |*\\_/*|
 int main(void)
 {
 
-    //display_init();
+    //display_init();     
+    tone_init();
+    tone_play_starwars_tuned();
     leds_init();
     pc_comm_init(9600, ((void *)0));
     
@@ -57,6 +60,7 @@ int main(void)
     periodic_task_init_a(func_a, 3300);
     //periodic_task_init_b(func_b, 5000);
      periodic_task_init_c(func_c, 1000);
+
 while (1)
 {
     

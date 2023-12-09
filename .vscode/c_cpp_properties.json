@@ -12,6 +12,13 @@
                 "c:/Users/Laurits/Documents/GitHub/sep4_drivers/src",
                 "c:/Users/Laurits/Documents/GitHub/sep4_drivers/lib/drivers",
                 "c:/Users/Laurits/Documents/GitHub/sep4_drivers/lib/mocks",
+                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/variants/mega",
+                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                 ""
             ],
             "browse": {
@@ -21,13 +28,22 @@
                     "c:/Users/Laurits/Documents/GitHub/sep4_drivers/src",
                     "c:/Users/Laurits/Documents/GitHub/sep4_drivers/lib/drivers",
                     "c:/Users/Laurits/Documents/GitHub/sep4_drivers/lib/mocks",
+                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/variants/mega",
+                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "C:/Users/Laurits/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                     ""
                 ]
             },
             "defines": [
-                "F_CPU=16000000L",
                 "PLATFORMIO=60111",
                 "ARDUINO_AVR_MEGA2560",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO=10808",
                 "__AVR_ATmega2560__",
                 ""
             ],

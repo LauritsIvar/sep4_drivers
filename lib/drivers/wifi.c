@@ -1,15 +1,8 @@
 #include "wifi.h"
 #include "includes.h"
 
-// Production
-#include "wifi.h"
+
 #include "uart.h"
-
-
-
-
-
-
 #define WIFI_DATABUFFERSIZE 128
 static uint8_t wifi_dataBuffer[WIFI_DATABUFFERSIZE];
 static uint8_t wifi_dataBufferIndex;
@@ -106,6 +99,93 @@ WIFI_ERROR_MESSAGE_t wifi_command_disable_echo()
 {
     return wifi_command("ATE0", 1);
 }
+
+WIFI_ERROR_MESSAGE_t wifi_command_get_ip_from_URL(char * url, char *ip_address){
+    char sendbuffer[128];
+    strcpy(sendbuffer, "AT+CIPDOMAIN=\"");
+    strcat(sendbuffer, url);
+    strcat(sendbuffer, "\"");
+    
+    uint16_t timeOut_s = 5;
+
+
+     UART_Callback_t callback_state = uart_get_rx_callback(USART_WIFI);
+    uart_init(USART_WIFI, wifi_baudrate, wifi_command_callback);
+
+    uart_send_string_blocking(USART_WIFI, strcat(sendbuffer, "\r\n"));
+
+    // better wait sequence...
+    for (uint16_t i = 0; i < timeOut_s * 100UL; i++) // timeout after 20 sec
+    {
+        _delay_ms(10);
+        if (strstr((char *)wifi_dataBuffer, "OK\r\n") != NULL)
+            break;
+    }
+
+    WIFI_ERROR_MESSAGE_t error;
+
+    if (wifi_dataBufferIndex == 0)
+        error=WIFI_ERROR_NOT_RECEIVING;
+    else if (strstr((char *)wifi_dataBuffer, "OK") != NULL)
+        error=WIFI_OK;
+    else if (strstr((char *)wifi_dataBuffer, "ERROR") != NULL)
+        error= WIFI_ERROR_RECEIVED_ERROR;
+    else if (strstr((char *)wifi_dataBuffer, "FAIL") != NULL)
+        error= WIFI_FAIL;
+    else
+        error= WIFI_ERROR_RECEIVING_GARBAGE;
+    
+   
+
+
+
+
+
+    char *ipStart = strstr((char *)wifi_dataBuffer, "CIPDOMAIN:");
+    if (ipStart != NULL) {
+        // Move the pointer to the start of the IP address
+        ipStart += strlen("CIPDOMAIN:");
+
+        // Find the end of the IP address (assuming it ends with a newline)
+        char * ipEnd = strchr(ipStart, '\r');
+        if (ipEnd != NULL && (ipEnd - ipStart) < 16) {
+            // Copy the IP address into the buffer
+            strncpy(ip_address, ipStart, ipEnd - ipStart);
+            ip_address[ipEnd - ipStart] = '\0';
+            
+        } }
+
+    //sscanf((char *)wifi_dataBuffer, "%*IPDOMAIN:%15[^\r\n]", ip_address);
+
+    //sscanf(wifi_dataBuffer, "+CIPDOMAIN:%15[^\r\n]", ip_address)
+    //strcpy(ip_address, wifi_dataBuffer);
+
+   // for (int i = 0; i < 50; i++)
+    //{
+   //     ip_address[i] =wifi_dataBuffer[i];
+   // }
+    
+
+
+
+    wifi_clear_databuffer_and_index();
+    uart_init(USART_WIFI, wifi_baudrate, callback_state);
+    return error; 
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 WIFI_ERROR_MESSAGE_t wifi_command_quit_AP(){
 

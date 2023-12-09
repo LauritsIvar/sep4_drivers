@@ -11,6 +11,7 @@ More information about PlatformIO Unit Testing:
 - https://docs.platformio.org/en/latest/advanced/unit-testing/index.html
 
 arduino for repeating uart commands
+#include <Arduino.h>
 void setup() {
   // Initialize UART0 and UART3 at 115200 baud rate
   Serial.begin(115200);
@@ -30,3 +31,21 @@ void loop() {
     Serial.write(c);          // Write the character to UART0
   }
 }
+
+
+
+
+//AT commands
+// AT+CWJAP="Den gamle daarlige router","vildfred"
+//AT+CWJAP="Den gamle daarlige router","vildfred"
+https://sep6a23.ew.r.appspot.com
+
+AT+CIPDOMAIN="url"
+
+
+AT+CIPDOMAIN="https://sep6a23.ew.r.appspot.com"
+
+
+AT+CIPSTART="TCP","142.250.181.212",12345
+
+AT+CIPSTART="TCP","172.18.96.1",23
