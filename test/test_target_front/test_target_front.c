@@ -23,15 +23,17 @@ void tearDown(void)
 }
 
 void test_adxl345_is_g()
-{
+{char message[1024];
     adxl345_init();
     _delay_ms(1000);
     int16_t x, y, z;
     adxl345_read_xyz(&x, &y, &z);
 
     float total_acceleration = sqrtf((float)x * (float)x + (float)y * (float)y + (float)z * (float)z) / 834;
+        sprintf(message, "INFO! adxl345 measurement! x= %dm/s^2, y= %dm/s^2, z= %dm/s^2        :1:_:PASS\n", x / 834, y / 834, z / 834);
+    TEST_MESSAGE(message); // TEST_MESSAGE("m e s s a g e :1:_:PASS\n");
     TEST_ASSERT_FLOAT_WITHIN(2, 9.82, total_acceleration);
-    char message[1024];
+    
     sprintf(message, "INFO! adxl345 measurement! x= %dm/s^2, y= %dm/s^2, z= %dm/s^2        :1:_:PASS\n", x / 834, y / 834, z / 834);
     TEST_MESSAGE(message); // TEST_MESSAGE("m e s s a g e :1:_:PASS\n");
 }

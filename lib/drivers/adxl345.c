@@ -1,6 +1,40 @@
 #include "adxl345.h"
 #include "includes.h"
 
+/*
+//CS=52=PB1   sdo=51=pb2     scl=53=pb0     SDA=måske 50 =pb3
+// GND
+//#define GND_BIT PG1
+//#define GND_DDR DDRG
+//#define GND_PORT PORTG
+
+// VCC
+//#define VCC_BIT PD7
+//#define VCC_DDR DDRD
+//#define VCC_PORT PORTD
+
+// CS
+#define CS_BIT PB1
+#define CS_DDR DDRB
+#define CS_PORT PORTB
+
+// SDO/MISO
+#define MISO_BIT PB2 // SDO to MISO (Pin 50)
+#define MISO_DDR DDRB
+#define MISO_PIN PINB
+
+// SDA/MOSI
+#define MOSI_BIT PB3 // SDA/SDI to MOSI
+#define MOSI_DDR DDRB
+#define MOSI_PORT PORTB
+
+// SCL/Clock
+#define SCL_BIT PB0
+#define SCL_DDR DDRB
+#define SCL_PORT PORTB
+
+*/
+
 // GND
 #define GND_BIT PG1
 #define GND_DDR DDRG
@@ -12,24 +46,46 @@
 #define VCC_PORT PORTD
 
 // CS
-#define CS_BIT DDC1
-#define CS_DDR DDRC
-#define CS_PORT PORTC
+//#define CS_BIT DDC1
+//#define CS_DDR DDRC
+//#define CS_PORT PORTC
+#define CS_BIT PB1
+#define CS_DDR DDRB
+#define CS_PORT PORTB
 
 // SDO/MISO
-#define MISO_BIT PC7 // SDO to MISO (Pin 50)
-#define MISO_DDR DDRC
-#define MISO_PIN PINC
+//#define MISO_BIT PC7 // SDO to MISO (Pin 50)
+//#define MISO_DDR DDRC
+//#define MISO_PIN PINC
+#define MISO_BIT PB2 // SDO to MISO (Pin 50)
+#define MISO_DDR DDRB
+#define MISO_PIN PINB
 
 // SDA/MOSI
-#define MOSI_BIT PA6 // SDA/SDI to MOSI
-#define MOSI_DDR DDRA
-#define MOSI_PORT PORTA
+//#define MOSI_BIT PA6 // SDA/SDI to MOSI
+//#define MOSI_DDR DDRA
+//#define MOSI_PORT PORTA
+#define MOSI_BIT PB3 // SDA/SDI to MOSI
+#define MOSI_DDR DDRB
+#define MOSI_PORT PORTB
 
 // SCL/Clock
-#define SCL_BIT PA4
-#define SCL_DDR DDRA
-#define SCL_PORT PORTA
+//#define SCL_BIT PA4
+//#define SCL_DDR DDRA
+//#define SCL_PORT PORTA
+#define SCL_BIT PB0
+#define SCL_DDR DDRB
+#define SCL_PORT PORTB
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -57,12 +113,12 @@ void adxl345_init(void)
     CS_PORT |= (1 << CS_BIT);
 
     // Ground
-    GND_DDR |= (1 << GND_BIT);
-    GND_PORT &= ~(1 << GND_BIT);
+    //GND_DDR |= (1 << GND_BIT);
+    //GND_PORT &= ~(1 << GND_BIT);
 
     // Vcc
-    VCC_DDR |= (1 << VCC_BIT);
-    VCC_PORT |= (1 << VCC_BIT);
+    //VCC_DDR |= (1 << VCC_BIT);
+    //VCC_PORT |= (1 << VCC_BIT);
 
     // Clock is default high.
     SCL_PORT |= (1 << SCL_BIT);

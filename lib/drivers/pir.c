@@ -1,20 +1,12 @@
 #include "pir.h"
 #include "includes.h"
 
-//Vcc
-#define DDR_Vcc DDRK
-#define PORT_Vcc PORTK
-#define P_Vcc PK5
-
-//GND
-#define DDR_Gnd DDRK //DDRK
-#define P_Gnd PK3 //PK7
 
 //signal
-#define DDR_sig DDRK
-#define P_sig PK4
-#define PORT_sig PORTK
-#define PIN_sig PINK
+#define DDR_sig DDRD
+#define P_sig PD2
+#define PORT_sig PORTD
+#define PIN_sig PIND
 
 
 
@@ -22,27 +14,27 @@
 static pir_callback_t pir_callback = NULL;
 
 #ifndef WINDOWS_TEST
-ISR(PCINT2_vect) {
+ISR(INT2_vect) {
+    
+    
+    pir_callback();
+
+    /*
     // Check if PK4 changed state
-    if (PINK & (1 << PK4)) {
+    if (PIN_sig & (1 << P_sig)) {
         // High: Motion detected
         if (pir_callback) {
-            pir_callback();
+            
         }
     } else {
         // Low: No motion
         // You can also call a different callback here if needed
-    }
+    }*/
 }
 #endif
 
 void pir_init(pir_callback_t callback) {
 
-//VccPK5
-DDR_Vcc|=(1<<P_Vcc);
-PORT_Vcc|=(1<<P_Vcc);
-//GndPK3
-DDR_Gnd|=(1<<P_Gnd);
 
 
 //Set PK4 as input and enable pullupresistor
@@ -50,8 +42,8 @@ DDR_Gnd|=(1<<P_Gnd);
     PORT_sig |= (1 << P_sig);
 
     // Enable pin change interrupt on PCINT20 (PK4)
-    PCICR |= (1 << PCIE2);
-    PCMSK2 |= (1 << PCINT20);
+    EICRA |= (1 << ISC20) | (1 << ISC21);  // Set INT2 to trigger on rising edge
+    EIMSK |= (1 << INT2);  // Enable external interrupt INT2
 
     // Set the callback
     pir_callback = callback;

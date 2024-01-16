@@ -1,7 +1,7 @@
 #include "tone.h"
 #include "includes.h"
 
-#define BUZ_BIT PA1
+#define BUZ_BIT PA7
 #define BUZ_DDR DDRA
 #define BUZ_PORT PORTA
 

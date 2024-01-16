@@ -16,7 +16,7 @@
  * @brief Define which USART module is used for WiFi communication.
  * 
  */
-#define USART_WIFI USART_3
+#define USART_WIFI USART_2
 
 /**
  * @brief Enumerated list of possible error messages from the WiFi module.

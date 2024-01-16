@@ -108,6 +108,28 @@ extern uint8_t PINC;
 extern uint8_t DDRF;
 extern uint8_t PORTF;
 extern uint8_t PINF;
+#define ISC21 5
+#define ISC20 4
+#define PA7 7
+#define PL1 1
+#define ADC15D 7
+extern uint8_t PINL;
+extern uint8_t DDRL;
+extern uint8_t PORTL;
+#define MUX0 0
+#define MUX2 2
+#define INT2 2
+extern uint8_t PINB;
+extern uint8_t EIMSK;
+extern uint8_t EICRA;
+#define PB1 1
+#define PB2 2
+#define PB3 3 
+#define PB0 0 
+
+#define  PL6 6
+#define  PL7 7
+
 
 #define PF1 1
 #define PF2 2

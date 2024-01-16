@@ -2,31 +2,36 @@
 #include "includes.h"
 
 //Data (The data goes both ways)
-#define DATA_BIT PD1
-#define DATA_PIN PIND
-#define DATA_DDR DDRD
-#define DATA_PORT PORTD
+#define DATA_BIT PL1
+#define DATA_PIN PINL
+#define DATA_DDR DDRL
+#define DATA_PORT PORTL
+
+//#define DATA_BIT PD1
+//#define DATA_PIN PIND
+//#define DATA_DDR DDRD
+//#define DATA_PORT PORTD
 
 //VCC
-#define VCC_BIT PD0
-#define VCC_DDR DDRD
-#define VCC_PORT PORTD
+//#define VCC_BIT PD0
+//#define VCC_DDR DDRD
+//#define VCC_PORT PORTD
 
 //GND
-#define GND_BIT PD2
-#define GND_DDR DDRD
-#define GND_PORT PORTD
+//#define GND_BIT PD2
+//#define GND_DDR DDRD
+//#define GND_PORT PORTD
 
 
 void dht11_init() {
 
 //Vcc
-VCC_DDR|=(1<<VCC_BIT);
-VCC_PORT|=(1<<VCC_BIT);
+//VCC_DDR|=(1<<VCC_BIT);
+//VCC_PORT|=(1<<VCC_BIT);
 
 //GND
-GND_DDR|=(1<<GND_BIT);
-GND_PORT&=~(1<<GND_BIT);
+//GND_DDR|=(1<<GND_BIT);
+//GND_PORT&=~(1<<GND_BIT);
 }
 
 

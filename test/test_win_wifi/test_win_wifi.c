@@ -51,7 +51,7 @@ void test_wifi_command_AT_sends_correct_stuff_to_uart()
 
   WIFI_ERROR_MESSAGE_t error = wifi_command_AT();
 
-  TEST_ASSERT_EQUAL(USART_3, uart_send_string_blocking_fake.arg0_val);
+  TEST_ASSERT_EQUAL(USART_2, uart_send_string_blocking_fake.arg0_val);
 
   TEST_ASSERT_EQUAL(1, uart_send_string_blocking_fake.call_count);
   TEST_ASSERT_EQUAL_STRING("AT\r\n", uart_send_string_blocking_fake.arg1_val);

@@ -5,6 +5,8 @@
 #include "leds.h"
 #include "servo.h"
 #include "tone.h"
+#include "light.h"
+#include "pir.h"
 
 
 void func_a(){
@@ -46,25 +48,25 @@ pc_comm_send_string_blocking("   _______________                        |*\\_/*|
 "--------------------                    --------------------\n");
 
 }
+int16_t globalcounter=0;
+void func2(){
+    globalcounter++;
+    
 
+}
 int main(void)
 {
 
-    //display_init();     
-    tone_init();
-    tone_play_starwars_tuned();
-    leds_init();
-    pc_comm_init(9600, ((void *)0));
-    
-    
-    periodic_task_init_a(func_a, 3300);
-    //periodic_task_init_b(func_b, 5000);
-     periodic_task_init_c(func_c, 1000);
+    display_init();     
+    //light_init();
+    pir_init(func2);
+
+ 
 
 while (1)
 {
-    
-   
+    display_int(globalcounter);
+    _delay_ms(500);
    
 }
 

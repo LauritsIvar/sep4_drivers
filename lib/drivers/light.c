@@ -11,7 +11,7 @@
 
 #include "light.h"
 #include "includes.h"
-
+//A15 PK7!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 /**
  * @brief Initialize ADC for photoresistor
  *
@@ -20,15 +20,15 @@
 void light_init(void) {
 
     //Vcc
-    DDRK|=(1 << PK2);
-    PORTK|=(1 << PK2);
+    //DDRK|=(1 << PK2);
+    //PORTK|=(1 << PK2);
 
     //GND
-    DDRK|=(1 << PK1);
+    //DDRK|=(1 << PK1);
 
     // Set reference voltage to AVCC and left adjust ADC result
-    // The  MUX1:5 should be set to 10000 for choosing ADC8, which ius placed on PK0 (look at page 283)
-    ADMUX = (1 << REFS0);//|(1<<MUX1);
+    // The  MUX1:5 should be set to 100111 for choosing ADC15, which ius placed on PK0 (look at page 283)
+    ADMUX = (1 << REFS0)|(1<<MUX2)|(1<<MUX1)|(1<<MUX0);
     ADCSRB = (1<<MUX5);
     // Enable ADC and set prescaler to 64 (16MHz/128 = 125kHz)
     // ADC must operate between 50kHz and 200kHz for its full 10-bit resolution
@@ -37,7 +37,7 @@ void light_init(void) {
 
     // Disable digital input on PK2 (ADC10) (page 287)
     // This will reduce power consumption on the pin
-    DIDR2 = (1 << ADC8D);
+    DIDR2 = (1 << ADC15D);
 
 }
 

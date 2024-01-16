@@ -3,33 +3,33 @@
 #include <inttypes.h>
 
 //Vcc
-#define DDR_Vcc DDRC
-#define PORT_Vcc PORTC
-#define P_Vcc PC0
+//#define DDR_Vcc DDRC
+//#define PORT_Vcc PORTC
+//#define P_Vcc PC0
 
 //GND
 #define DDR_Gnd DDRC //DDRK
 #define P_Gnd PC6 //PK7
 
-//Trigger
-#define DDR_Trig DDRC
-#define P_Trig PC2
-#define PORT_trig PORTC
+//Trigger   42=PL7
+#define DDR_Trig DDRL
+#define P_Trig PL7//PC2
+#define PORT_trig PORTL
 
-//Echo
-#define PIN_Echo PINC
-#define P_Echo PC4
+//Echo  43=PL6
+#define PIN_Echo PINL
+#define P_Echo PL6//PC4
 
 
 
 void hc_sr04_init()
 {
     //Vcc
-    DDR_Vcc|=(1 << P_Vcc);
-    PORT_Vcc|=(1 << P_Vcc);
+    //DDR_Vcc|=(1 << P_Vcc);
+    //PORT_Vcc|=(1 << P_Vcc);
 
     //GND
-    DDR_Gnd|=(1 << P_Gnd);
+    //DDR_Gnd|=(1 << P_Gnd);
 
     //Trigger
     DDR_Trig|=(1 << P_Trig);
